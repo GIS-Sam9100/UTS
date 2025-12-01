@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <td class="td-kategori">${lokasi.kategori}</td>
             <td class="td-aksi">
                 <div class="action-buttons">
-                    <button class="edit-btn" title="Edit">✏️</button>
-                    <button class="delete-btn" title="Hapus">🗑️</button>
+                    <button class="edit-btn" title="Edit"><i class="fa fa-pen" aria-hidden="true"></i></button>
+                    <button class="delete-btn" title="Hapus"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </div>
             </td>
         `;
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetForm = () => {
         form.reset();
         lokasiIdInput.value = '';
-        submitBtn.textContent = 'Tambah Lokasi';
+        submitBtn.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Lokasi';
         cancelBtn.classList.add('hidden');
     };
 
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deskripsiInput.value = lokasi.deskripsi;
         longitudeInput.value = lokasi.koordinat.coordinates[0];
         latitudeInput.value = lokasi.koordinat.coordinates[1];
-        submitBtn.textContent = 'Update Lokasi';
+        submitBtn.innerHTML = '<i class="fa fa-pen" aria-hidden="true"></i> Update Lokasi';
         cancelBtn.classList.remove('hidden');
     };
 
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Operasi gagal');
             resetForm();
             fetchLokasi();
-            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: 'Sukses', showConfirmButton: false, timer: 1500 });
+            Swal.fire({ toast: true, position: 'top-end', html: '<i class="fa fa-circle-check" style="color:#28a745"></i>&nbsp;Sukses', showConfirmButton: false, timer: 1500 });
         } catch (error) {
             console.error('Error:', error);
             Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menyimpan data.' });
@@ -156,12 +156,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 confirmButtonText: 'Hapus',
                 cancelButtonText: 'Batal'
             });
-            if (confirm.isConfirmed) {
+                    if (confirm.isConfirmed) {
                 try {
                     const response = await fetch(`${apiUrl}?id=${id}`, { method: 'DELETE' });
                     if (!response.ok) throw new Error('Gagal menghapus');
                     fetchLokasi();
-                    Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: 'Terhapus', showConfirmButton: false, timer: 1200 });
+                    Swal.fire({ toast: true, position: 'top-end', html: '<i class="fa fa-trash" style="color:#e53935"></i>&nbsp;Terhapus', showConfirmButton: false, timer: 1200 });
                 } catch (error) {
                     console.error('Error:', error);
                     Swal.fire({ icon: 'error', title: 'Gagal', text: 'Gagal menghapus lokasi.' });
@@ -219,21 +219,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleBtn.addEventListener('click', () => {
         const hidden = tableWrap.classList.toggle('hidden');
-        toggleBtn.textContent = hidden ? 'Tampilkan' : 'Sembunyikan';
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: hidden ? 'info' : 'success',
-            title: hidden ? 'Daftar disembunyikan' : 'Daftar ditampilkan',
-            showConfirmButton: false,
-            timer: 1100
-        });
+        toggleBtn.innerHTML = hidden ? '<i class="fa fa-eye" aria-hidden="true"></i> Tampilkan' : '<i class="fa fa-eye-slash" aria-hidden="true"></i> Sembunyikan';
+        Swal.fire({ toast: true, position: 'top-end', html: hidden ? '<i class="fa fa-eye" style="color:#2196f3"></i>&nbsp;Daftar disembunyikan' : '<i class="fa fa-eye-slash" style="color:#28a745"></i>&nbsp;Daftar ditampilkan', showConfirmButton: false, timer: 1100 });
     });
 
     moveBtn.addEventListener('click', () => {
         const isLeft = sidebar.classList.toggle('left');
-        moveBtn.textContent = isLeft ? 'Pindah Kanan' : 'Pindah Kiri';
-        Swal.fire({ toast: true, position: 'top-end', icon: 'info', title: isLeft ? 'Sidebar di kiri' : 'Sidebar di kanan', showConfirmButton: false, timer: 1100 });
+        moveBtn.innerHTML = isLeft ? '<i class="fa fa-arrows-left-right" aria-hidden="true"></i> Pindah Kanan' : '<i class="fa fa-arrows-left-right" aria-hidden="true"></i> Pindah Kiri';
+        Swal.fire({ toast: true, position: 'top-end', html: '<i class="fa fa-arrows-left-right" style="color:#00b8d4"></i>&nbsp;' + (isLeft ? 'Sidebar di kiri' : 'Sidebar di kanan'), showConfirmButton: false, timer: 1100 });
     });
 
     fetchLokasi();

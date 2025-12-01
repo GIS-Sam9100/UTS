@@ -1,0 +1,247 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, #e6f7ff 0%, #f7feff 100%);
+    color: #03303a;
+    margin: 0;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #006876;
+    margin-bottom: 20px;
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Peta */
+.map-container {
+    flex: 2;
+    min-width: 300px;
+}
+
+#map {
+    height: 600px;
+    width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 10px 32px rgba(0,184,212,0.13), 0 2px 8px rgba(0,120,140,0.08);
+    z-index: 1;
+    border: 2px solid #00b8d4;
+    transition: box-shadow 0.3s, border 0.3s;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s ease;
+    order: 1;
+}
+
+.sidebar.left {
+    order: -1;
+    transform: translateX(-6px);
+}
+
+.form-container, .list-container {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(1,60,70,0.04);
+    border: 1px solid rgba(0,120,140,0.05);
+}
+
+h3 {
+    margin-top: 0;
+    color: #004a54;
+    border-bottom: 2px solid rgba(0,120,140,0.06);
+    padding-bottom: 10px;
+}
+
+/* Header untuk tabel: judul + kontrol sejajar */
+.table-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.table-header h3 {
+    margin: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    font-size: 16px;
+}
+
+.table-header .table-controls { margin-left: auto; }
+
+/* Form */
+#lokasi-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#lokasi-form input, #lokasi-form textarea {
+    padding: 10px;
+    border: 1px solid rgba(0,80,90,0.08);
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+#lokasi-form textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.coords-group {
+    display: flex;
+    gap: 10px;
+}
+
+.coords-group input {
+    width: 100%;
+}
+
+button {
+    padding: 9px 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.18s, transform 0.08s;
+}
+
+#submit-btn {
+    background-color: #00b8d4;
+    color: white;
+}
+#submit-btn:hover { background-color: #00a0c2; transform: translateY(-1px); }
+
+#cancel-btn {
+    background-color: #90a4ae;
+    color: white;
+}
+#cancel-btn:hover { background-color: #78909c; transform: translateY(-1px); }
+
+/* Daftar Lokasi */
+#lokasi-list {
+    width: 100%;
+    display: table-row-group;
+}
+
+.lokasi-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lokasi-table thead th {
+    text-align: left;
+    padding: 10px 8px;
+    font-size: 13px;
+    color: #02333a;
+    border-bottom: 2px solid rgba(0,120,140,0.06);
+}
+
+.lokasi-table tbody tr {
+    transition: background 0.12s;
+    cursor: pointer;
+}
+
+.lokasi-table tbody tr:hover {
+    background: rgba(0,184,212,0.04);
+}
+
+.lokasi-table td {
+    padding: 10px 8px;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+    color: #014a4f;
+}
+
+.action-buttons button {
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.edit-btn { color: #ffb300; }
+.delete-btn { color: #e53935; }
+
+.hidden { display: none; }
+
+.table-controls { display: flex; gap: 8px; align-items: center; }
+.control-btn {
+    background: rgba(0,120,140,0.06);
+    color: #004a54;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,120,140,0.06);
+}
+.control-btn:hover { background: rgba(0,120,140,0.1); }
+
+.table-wrap { max-height: 320px; overflow-y: auto; margin-top: 8px; }
+
+.table-wrap {
+    max-height: 320px;
+    overflow: hidden;
+    transition: max-height 0.36s ease, opacity 0.32s ease, padding 0.28s ease;
+    opacity: 1;
+}
+
+.table-wrap.hidden {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Button and control micro-animations */
+.control-btn, button {
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+.control-btn:active, button:active { transform: translateY(1px) scale(0.997); }
+.control-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,120,140,0.06); }
+
+/* Row hover micro animation */
+.lokasi-table tbody tr { transition: transform 0.12s ease, box-shadow 0.12s ease; }
+.lokasi-table tbody tr:active { transform: scale(0.998); }
+
+/* Marker bounce animation (used for new markers and when focusing) */
+@keyframes marker-bounce {
+    0% { transform: translateY(-10px); }
+    50% { transform: translateY(6px); }
+    100% { transform: translateY(0); }
+}
+.leaflet-marker-icon.bounce { animation: marker-bounce 0.6s cubic-bezier(.2,.9,.2,1); }
+
+/* Small pop animation for toasts or newly added rows */
+@keyframes pop {
+    0% { transform: scale(0.96); opacity: 0; }
+    60% { transform: scale(1.02); opacity: 1; }
+    100% { transform: scale(1); }
+}
+.lokasi-table tbody tr.new { animation: pop 260ms ease; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    .table-header { flex-direction: column; align-items: stretch; }
+    .table-header .table-controls { margin-left: 0; margin-top: 8px; justify-content: flex-end; display: flex; }
+}

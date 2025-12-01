@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Lokasi GIS</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Peta Lokasi Interaktif</h1>
+        <div class="main-content">
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+            <div class="sidebar" id="sidebar">
+                <div class="form-container">
+                    <h3>Tambah/Edit Lokasi</h3>
+                    <p>Klik pada peta untuk mengisi koordinat secara otomatis.</p>
+                    <form id="lokasi-form">
+                        <input type="hidden" id="lokasi-id">
+                        <input type="text" id="nama" placeholder="Nama Lokasi" required>
+                        <input type="text" id="kategori" placeholder="Kategori (e.g., Kantor, Taman)" required>
+                        <textarea id="deskripsi" placeholder="Deskripsi singkat"></textarea>
+                        <div class="coords-group">
+                            <input type="text" id="longitude" placeholder="Longitude" required>
+                            <input type="text" id="latitude" placeholder="Latitude" required>
+                        </div>
+                        <button type="submit" id="submit-btn">Tambah Lokasi</button>
+                        <button type="button" id="cancel-btn" class="hidden">Batal</button>
+                    </form>
+                </div>
+
+                <div class="list-container">
+                    <div class="table-header">
+                        <h3>Daftar Lokasi</h3>
+                        <div class="table-controls">
+                            <button id="toggle-table" class="control-btn">Sembunyikan</button>
+                            <button id="move-table" class="control-btn">Pindah Kiri</button>
+                        </div>
+                    </div>
+                    <div class="table-wrap" id="table-wrap">
+                        <table class="lokasi-table">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Kategori</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lokasi-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="main.js"></script>
+</body>
+</html>
